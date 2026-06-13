@@ -1,0 +1,85 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+package-lock.json
+pnpm-lock.yaml
+
+# Build
+dist/
+build/
+out/
+.next/
+.nuxt/
+coverage/
+.nyc_output/
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.sublime-project
+.sublime-workspace
+
+# Testing
+.jest/
+jest.json
+coverage/
+*.lcov
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+redis_data/
+neo4j_data/
+neo4j_logs/
+
+# Logs
+logs/
+*.log
+lerna-debug.log*
+
+# OS
+Thumbs.db
+.DS_Store
+*.pem
+
+# Temporary
+tmp/
+temp/
+.tmp/
+.cache/
+
+# Backup
+*.bak
+*.backup
+*~
+
+# Monorepo
+.yarn/
+.pnp
+.pnp.js
+
+# Generated
+/dist
+/build
+/.turbo
