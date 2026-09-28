@@ -1,0 +1,36 @@
+{
+  "company": {
+    "name": "Example Call Centre Services Ltd (fictional)",
+    "country": "US",
+    "establishedInEu": false,
+    "employees": 300
+  },
+  "aiSystems": [
+    {
+      "id": "agent-mood-monitor",
+      "name": "Agent mood monitoring",
+      "description": "Infers the emotions of call centre employees from voice to rate their performance.",
+      "role": "deployer",
+      "euNexus": true,
+      "usedInWorkplace": true,
+      "prohibitedPractices": {
+        "emotionRecognitionAtWorkOrEducation": true
+      }
+    }
+  ],
+  "gdpr": {
+    "processesPersonalData": true,
+    "role": "controller",
+    "dataSubjectsInEu": true,
+    "processing": {
+      "specialCategoryData": true,
+      "largeScale": true,
+      "systematicMonitoringCoreActivity": false,
+      "transfersOutsideEea": true
+    },
+    "controls": {
+      "lawfulBasisDocumented": false,
+      "privacyNoticePublished": true
+    }
+  }
+}

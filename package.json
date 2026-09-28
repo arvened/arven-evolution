@@ -1,66 +1,23 @@
 {
   "name": "arven-evolution",
-  "version": "3.0.0",
-  "description": "Enterprise Audit & Regulatory Transformation Platform",
+  "version": "0.1.0",
+  "description": "Prototype: EU AI Act and GDPR compliance self-assessment engine with an optional multi-LLM document review module",
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=22.18"
   },
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
   "scripts": {
-    "install": "pnpm install",
-    "build": "pnpm -r run build",
-    "dev": "pnpm -r run dev",
-    "start": "pnpm -r run start",
-    "test": "pnpm -r run test",
-    "test:watch": "pnpm -r run test:watch",
-    "test:coverage": "pnpm -r run test:coverage",
-    "lint": "pnpm -r run lint",
-    "lint:fix": "pnpm -r run lint:fix",
-    "format": "pnpm -r run format",
-    "typecheck": "pnpm -r run typecheck",
-    "clean": "pnpm -r run clean",
-    "docker:build": "docker-compose build",
-    "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
-    "docker:logs": "docker-compose logs -f"
+    "start": "node src/server/index.ts",
+    "audit": "node src/cli/audit.ts",
+    "review-notice": "node src/cli/reviewNotice.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "node --test \"tests/**/*.test.ts\""
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
-    "@types/node": "^20.10.6",
-    "prettier": "^3.1.1",
-    "eslint": "^8.56.0",
-    "@typescript-eslint/eslint-plugin": "^6.17.0",
-    "@typescript-eslint/parser": "^6.17.0",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.2"
+    "@types/node": "^22.10.0",
+    "typescript": "^5.8.0"
   },
-  "keywords": [
-    "audit",
-    "compliance",
-    "security",
-    "enterprise",
-    "typescript",
-    "fastapi",
-    "gdpr",
-    "ai-act",
-    "dsa",
-    "nis2"
-  ],
-  "author": "ARVEN Team <hello@arvend.io>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/arven/arven-evolution.git"
-  },
-  "bugs": {
-    "url": "https://github.com/arven/arven-evolution/issues"
-  },
-  "homepage": "https://github.com/arven/arven-evolution#readme"
+  "license": "MIT"
 }

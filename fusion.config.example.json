@@ -1,0 +1,34 @@
+{
+  "requireEuHosting": false,
+  "agreementThreshold": 0.75,
+  "minSuccessfulProviders": 2,
+  "providers": [
+    {
+      "id": "claude",
+      "kind": "anthropic",
+      "model": "REPLACE_WITH_MODEL_ID_FROM_VENDOR_DOCS",
+      "apiKeyEnv": "ANTHROPIC_API_KEY",
+      "euHosted": false,
+      "temperature": 0,
+      "timeoutMs": 60000
+    },
+    {
+      "id": "gemini",
+      "kind": "gemini",
+      "model": "REPLACE_WITH_MODEL_ID_FROM_VENDOR_DOCS",
+      "apiKeyEnv": "GEMINI_API_KEY",
+      "euHosted": false,
+      "temperature": 0
+    },
+    {
+      "id": "mistral",
+      "kind": "openai_compatible",
+      "baseUrl": "https://api.mistral.ai/v1",
+      "model": "REPLACE_WITH_MODEL_ID_FROM_VENDOR_DOCS",
+      "apiKeyEnv": "MISTRAL_API_KEY",
+      "euHosted": true,
+      "temperature": 0,
+      "jsonMode": true
+    }
+  ]
+}

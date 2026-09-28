@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dev tools (TypeScript, Node types)
+        run: npm install --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Tests
+        run: npm test
+      - name: Run example audits
+        run: |
+          node src/cli/audit.ts examples/online-shop-minimal-risk.json > /dev/null
+          node src/cli/audit.ts examples/hr-screening-saas.json > /dev/null || test $? -eq 1
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t arven-evolution:ci .
+      - name: Smoke test
+        run: |
+          docker run -d --name arven -p 3000:3000 arven-evolution:ci
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:3000/health && exit 0; sleep 1; done
+          docker logs arven
+          exit 1

@@ -1,0 +1,21 @@
+Privacy Notice of Example Home Goods OÜ (fictional company, for testing only)
+
+1. Who we are
+Example Home Goods OÜ, Tartu mnt 1, 10111 Tallinn, Estonia, is the controller of your personal data. You can contact us at privacy@example.invalid.
+
+2. What we process and why
+We process your name, delivery address, e-mail address and order history to deliver your orders. The legal basis is the performance of a contract (Art. 6(1)(b) GDPR).
+With your consent (Art. 6(1)(a) GDPR) we send you our newsletter. You can withdraw your consent at any time by clicking the unsubscribe link, without affecting the lawfulness of processing before the withdrawal.
+We keep invoices because the accounting law requires it (Art. 6(1)(c) GDPR).
+
+3. Who receives your data
+Your data is shared with our courier companies and our payment service provider, and with our hosting provider, which processes data on our behalf.
+
+4. How long we keep your data
+Order data is kept for 3 years after the last order. Invoices are kept for 7 years as required by the Estonian Accounting Act. Newsletter data is kept until you withdraw consent.
+
+5. Your rights
+You have the right to access your data, to have it rectified or erased, to restrict its processing, to object to processing and to receive your data in a portable format. You also have the right to lodge a complaint with the Estonian Data Protection Inspectorate.
+
+6. Do you have to give us your data?
+Providing your name and address is necessary to conclude the purchase contract. Without it we cannot deliver your order.

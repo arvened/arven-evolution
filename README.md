@@ -1,293 +1,158 @@
-🚀 FILE #1 — README.md
+# ARVEN Evolution
 
-📄 ИНФОРМАЦИЯ О ФАЙЛЕ
+Prototype of a compliance self-assessment service for the **EU AI Act** (Regulation (EU) 2024/1689) and the **GDPR** (Regulation (EU) 2016/679).
 
-Filename:  README.md
-Path:      /README.md (в КОРНЕ repo)
-Size:      ~10KB
-Type:      Markdown
-Purpose:   Main GitHub page
+A company fills in a structured questionnaire about itself and its AI systems. The service classifies each AI system under the AI Act, lists every obligation that applies with its legal reference, compares that list with what the company declared, and produces a prioritised action list in JSON or Markdown.
 
+An optional module (**Fusion**) asks several LLMs to review a privacy notice against Art. 13 GDPR, checks that every quote they give actually appears in the text, and combines their answers by majority vote.
 
-📋 СОДЕРЖИМОЕ ФАЙЛА
-
-# 🎯 ARVEN EVOLUTION v3.0
-
-Enterprise Audit & Regulatory Transformation Platform
-
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)](.)
-[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](package.json)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue)](.)
+> **Status: prototype (v0.1.0).** Not used by customers, not validated by a lawyer, not a conformity assessment tool. Every report says so. See [Limitations](#limitations).
 
 ---
 
-## 🚀 What is ARVEN EVOLUTION?
+## What works
 
-A complete 9-level automated audit pipeline that:
+| Part | What it does | Tested |
+|---|---|---|
+| AI Act engine | Scope (Art. 2), AI literacy (Art. 4), prohibited practices (Art. 5), high-risk classification (Art. 6 incl. Annex I, Annex III and the Art. 6(3) derogation), provider duties (Art. 9-17, 22, 43, 47-49, 72, 73), deployer duties (Art. 26, 27), transparency (Art. 50), general-purpose AI models (Art. 53-55) | Unit tests |
+| GDPR engine | Controller duties (Art. 6, 8, 9, 12-22, 25, 27, 28, 30, 32-35), processor duties (Art. 28, 30(2), 32, 33(2)), DPO (Art. 37), transfers (Chapter V) | Unit tests |
+| Scoring | Weighted, reproducible by hand; unanswered never counts as compliant | Unit tests |
+| Reports | JSON and Markdown with legal references and recommendations | Unit tests |
+| HTTP API | Zero-dependency Node.js server, optional API key, body size limit | Integration tests |
+| CLI | Run an audit from a JSON file | CI |
+| Fusion (LLM review) | Adapters for Anthropic, Gemini and any OpenAI-compatible API (Mistral, DeepSeek, Moonshot/Kimi, Nebius, vLLM ...); quote verification; consensus; token cost | Tested with mocked HTTP only. **Not yet run against real vendor APIs.** |
 
-✅ Assesses code quality, architecture, performance & security in parallel  
-✅ Generates compliance reports (GDPR, AI Act, DSA, NIS2, DORA)  
-✅ Detects 574+ OWASP/CWE vulnerability patterns  
-✅ Runs red team simulations to estimate breach success rates  
-✅ Integrates partner revenue tracking & invoicing  
-✅ Produces actionable recommendations with business impact  
+84 automated tests. No runtime dependencies.
 
-In production: Scores audit in ~4 seconds | Accuracy: 90%+ | Uptime: 99.9%
+## Quick start
 
----
-## 🚀 Production Status (Week 21 Ready)
-
-| Component | Status | Version | Since |
-|-----------|--------|---------|-------|
-| ARVEN CORE v2.0 | ✅ Production Ready | 2.0.0 | Jun 2026 |
-| Fusion API | ✅ NEW - Production Ready | 1.0.0 | Jun 21, 2026 |
-| Partner Revenue Manager | ✅ NEW - Production Ready | 1.0.0 | Jun 21, 2026 |
-
-## 💰 Key Metrics (Week 17 Validation)
-
-- LLM Cost: $0.227/audit (52% savings from $0.50 single-vendor)
-- Latency: p95 < 8 seconds (7.2s average)
-- Uptime: 99.8% (4-vendor consensus resilience)
-- Accuracy: 91% (5/5 GROUND_TRUTH profiles correct)
-- Vendors: Claude Opus, Gemini Flash 2.0, DeepSeek V4, Kimi K2.6
-
-## 📚 Fusion API Documentation
-
-- 📖 [Adoption](docs/FUSION_API_ADOPTION.md) - Cost savings & business rationale
-- 🏗️ [Implementation](docs/FUSION_API_IMPLEMENTATION.md) - Technical integration
-- 📊 [Tech Radar](docs/FUSION_API_TECH_RADAR.md) - Vendor benchmarks & roadmap
-- 📋 [Decision Log](docs/FUSION_API_DECISION_LOG.md) - How we chose 4-vendor approach
-- 🔬 [Research](docs/FUSION_API_RESEARCH.md) - Literature & empirical validation
-- 🧪 [Test Suite](tests/fusion-api-week17/fusion-api-week17.test.ts) - 14 automated tests
-- 📋 [Test Plan](tests/fusion-api-week17/FUSION_API_WEEK17_TEST_PLAN.md) - Testing strategy
-
----
-## 🏗️ Architecture at a Glance
-
-
-
-REQUEST
-↓
-L1-L5: Sequential Assessment
-• Code Quality (L4)
-• Architecture (L3)
-• Performance (L5)
-↓
-L6: Security Assessment (PARALLEL)
-• 574 vulnerability patterns
-• GDPR/AI Act/DSA/NIS2 compliance
-• Red team simulation
-↓
-L7: Integrated Verdict
-• final_score = (code+arch+perf+security)/4
-• verdict = PASS/PARTIAL/FAIL
-↓
-L8: Partner Revenue
-• Track assessments
-• Generate invoices
-• 50/50 split
-↓
-L9: Reporting
-• PDF/JSON/CSV export
-
-
-Full documentation: See [ARCHITECTURE.md](ARCHITECTURE.md)
-
----
-
-## 📦 What's Inside
-
-
-
-packages/
-├── security-assessment-module/    (574 vulnerability patterns)
-│   └── 1,350 lines of TypeScript
-│
-└── partner-revenue-manager/       (revenue tracking & invoicing)
-└── 1,450 lines of TypeScript
-
-apps/
-└── api/                           (9-level pipeline)
-└── 1,300 lines of TypeScript
-
-infrastructure/
-├── docker-compose.yml             (8 production services)
-├── Dockerfile
-├── schema.sql                     (23 database tables)
-└── .env.example
-
-TOTAL: 6,741 lines of production code
-
-
----
-
-## ⚡ Quick Start
-
-### Prerequisites
-- Node.js 18+
-- Docker & Docker Compose
-
-### 1-Minute Setup
+Requires Node.js 22.18 or newer (runs TypeScript directly, no build step).
 
 ```bash
-# Clone
-git clone https://github.com/arven/arven-evolution.git
+git clone https://github.com/arvened/arven-evolution.git
 cd arven-evolution
 
-# Setup
-cp config/.env.example .env
-docker-compose up -d
+# Run an audit from the command line
+node src/cli/audit.ts examples/hr-screening-saas.json
 
-# Test
-curl http://localhost:3000/health
+# Start the API
+ARVEN_API_KEY=change-me node src/server/index.ts
+```
 
+Development tools (type checking) and tests:
 
-Run Your First Audit
+```bash
+npm install        # installs TypeScript and Node types only
+npm run typecheck
+npm test
+```
 
-curl -X POST http://localhost:3000/api/audit/run \
+Docker:
+
+```bash
+docker compose up --build
+```
+
+## API
+
+All `/api/*` routes require `Authorization: Bearer <ARVEN_API_KEY>` when `ARVEN_API_KEY` is set.
+
+| Method | Path | Description |
+|---|---|---|
+| GET | `/health` | Liveness, and whether document review is configured |
+| POST | `/api/audits` | Body: questionnaire JSON. Returns the full report (201), or 422 with a list of validation issues |
+| GET | `/api/audits/{id}` | Report as JSON |
+| GET | `/api/audits/{id}/report.md` | Report as Markdown |
+| POST | `/api/reviews/privacy-notice` | Body: `{"text": "..."}`. Multi-LLM Art. 13 review. 503 when not configured |
+
+```bash
+curl -X POST http://localhost:3000/api/audits \
+  -H "Authorization: Bearer change-me" \
   -H "Content-Type: application/json" \
-  -d '{
-    "audit_id": "audit-001",
-    "company_name": "My Company",
-    "company_location": "PL",
-    "metadata": {"language": "python", "framework": "fastapi"}
-  }'
+  --data @examples/hr-screening-saas.json
+```
 
+Audits are stored in memory and lost on restart (see roadmap).
 
-Response:
+## The questionnaire
 
-{
-  "success": true,
-  "data": {
-    "audit_id": "audit-001",
-    "final_score": 76.75,
-    "verdict": "PARTIAL",
-    "component_scores": {
-      "code_quality": 78,
-      "architecture": 75,
-      "performance": 82,
-      "security": 72
-    }
-  }
-}
+Types and field descriptions: [`src/questionnaire/types.ts`](src/questionnaire/types.ts). Examples: [`examples/`](examples/) (all companies are fictional).
 
+Every control is an optional boolean:
 
-🔐 Features
+- `true` : declared in place, finding status **met**
+- `false` : declared not in place, finding status **gap**
+- not answered : finding status **unknown** (never treated as met)
 
-Security Assessment
+Unknown fields are rejected, so a typo cannot silently turn a "yes" into "unknown".
 
- • ✅ 574 OWASP/CWE vulnerability patterns
- • ✅ Compliance checking (GDPR, AI Act, DSA, NIS2, DORA)
- • ✅ Red team simulation
- • ✅ Automated remediation recommendations
+## Scoring
 
-Partner Revenue Tracking
+```
+score          = sum of weights of "met" findings / sum of weights of all applicable findings * 100
+weights        = critical 8, high 4, medium 2, low 1
+answerCoverage = answered findings / applicable findings * 100
+verdict        = critical_issues            if any critical finding is a gap
+                 gaps_found                 if any finding is a gap or unknown
+                 no_gaps_on_declared_facts  otherwise
+```
 
- • ✅ Assessment recording per partner
- • ✅ Automatic invoice generation (15% success fee)
- • ✅ 50/50 split calculation
- • ✅ Dual dashboards (Edward + Partner)
+"No gaps on declared facts" means only that: the company's own answers show no gap for the rules this engine knows. It is not a statement of compliance.
 
-Database
+## Fusion: multi-LLM privacy notice review
 
- • ✅ PostgreSQL 16 (23 production tables)
- • ✅ Redis 7 (caching)
- • ✅ Neo4j 5 (relationships)
+1. Copy `fusion.config.example.json` to `fusion.config.json`. Fill in model IDs from each vendor's documentation (the code deliberately hardcodes none) and, optionally, prices per million tokens from the vendor price list.
+2. Put API keys in environment variables named in `apiKeyEnv`. Keys never go into the config file; the loader refuses values that look like keys.
+3. Run:
 
-🔌 API Endpoints
+```bash
+FUSION_CONFIG_FILE=fusion.config.json ANTHROPIC_API_KEY=... GEMINI_API_KEY=... \
+  node src/cli/reviewNotice.ts examples/privacy-notice-sample.txt
+```
 
-POST   /api/audit/run
-       Launch complete 9-level audit pipeline
+How the result is built:
 
-GET    /api/audit/:audit_id
-       Retrieve specific audit results
+- Each model returns a status per Art. 13 item (`present`, `absent`, `unclear`, `not_applicable`) and, for `present`, a verbatim quote.
+- A `present` vote whose quote is not found in the text is downgraded to `unclear` (hallucination guard).
+- The item result is the majority vote if agreement is at least `agreementThreshold` (default 0.75); otherwise, or on a tie, `needs_human_review`.
+- At least `minSuccessfulProviders` (default 2) must answer, otherwise the review fails with a per-provider error list.
+- `requireEuHosting: true` excludes every provider not declared `euHosted`. The declaration is yours to verify with the vendor contract.
 
-POST   /api/security/audit/security-assessment
-       Run security assessment
+**Data protection:** the notice text is sent to every configured vendor. Do not send documents containing personal data to vendors without a data processing agreement and a valid transfer mechanism.
 
-GET    /api/dashboards/edward
-       Full analytics dashboard
+## Limitations
 
-GET    /api/dashboards/partner/:id
-       Partner-specific dashboard
+- **Legal content is not validated by a lawyer.** Rules were written from the regulation text; they need review by a qualified EU data protection / AI lawyer before any client use.
+- **Declared facts only.** The engine does not inspect code, systems or documents (except the Fusion notice review). If the answers are wrong, the report is wrong.
+- **No application dates.** AI Act deadlines are being changed by the Digital Omnibus package; the engine lists obligations, not when they start to apply. Check dates against the Official Journal.
+- **Simplifications:** territorial scope is one declared flag; the content and quality of each obligation (for example whether a DPIA is adequate) are not assessed; Annex I sector procedures, national laws and GDPR Art. 14 are not covered.
+- **Fusion** has not been run against live vendor APIs; response formats are implemented from vendor documentation and covered by mocked tests only. No accuracy figure exists yet.
+- **Storage** is in memory.
 
+## Roadmap
 
-Full API docs: See docs/API.md
+1. Legal review of every rule and recommendation.
+2. First live run of Fusion with real API keys; measure agreement, cost and latency on a labelled set of real privacy notices.
+3. Persistent storage (PostgreSQL) behind the existing `AuditStore` interface.
+4. Further frameworks as separate engines (NIS2 scope, Cyber Resilience Act, DORA).
+5. Web form for the questionnaire.
 
-📚 Documentation
+## Project layout
 
- • ARCHITECTURE.md - Complete system design
- • docs/DEPLOYMENT.md - Deployment guide
- • docs/SECURITY.md - Security & compliance
- • CONTRIBUTING.md - How to contribute
+```
+src/
+  questionnaire/  types and strict validation of the input
+  engines/        aiAct.ts, gdpr.ts, scoring.ts, runAudit.ts
+  report/         Markdown rendering
+  fusion/         LLM adapters, config, privacy notice review
+  partners/       partner revenue split (pure function)
+  store/          in-memory audit store
+  server/         HTTP API
+  cli/            command-line tools
+tests/            node:test suites
+examples/         fictional questionnaires and a sample privacy notice
+```
 
+## License
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-🧪 Testing
-
-npm test              # Run all tests
-npm run lint          # Check code quality
-npm run typecheck     # Type checking
-npm run test:coverage # Coverage report
-
-
-🚀 Deployment
-
-Docker Compose (Easiest)
-
-docker-compose up -d
-
-
-Includes: PostgreSQL 16, Redis 7, Neo4j 5, Prometheus, Grafana, Nginx
-
-Kubernetes
-
-kubectl apply -f infrastructure/kubernetes/
-
-
-📊 Stats
-
-Lines of Code:          6,741
-TypeScript Files:       15
-Database Tables:        23
-API Endpoints:          15+
-Vulnerability Patterns: 574
-Compliance Frameworks:  5
-Documentation:          2,000+ lines
-
-
-🔒 Security & Compliance
-
-✅ GDPR compliant - Data deletion mechanisms✅ AI Act ready - Model documentation & risk assessment✅ DSA compliant - Content moderation & appeals✅ NIS2 ready - Incident response & security updates✅ DORA compliant - ICT risk management
-
-📄 License
-
-MIT License - see LICENSE
-
-📧 Contact
-
- • Email: hello@arvend.io
- • Issues: GitHub Issues
- • Website: (coming soon)
-
-Status: ✅ Production ReadyVersion: 3.0.0Last Updated: June 13, 2026
-
-🚀 Ready to get started? 
-
----
-
-
+MIT, see [LICENSE](LICENSE).

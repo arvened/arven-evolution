@@ -1,0 +1,66 @@
+{
+  "company": {
+    "name": "Example Talent Analytics Sp. z o.o. (fictional)",
+    "country": "PL",
+    "establishedInEu": true,
+    "employees": 42
+  },
+  "aiLiteracyProgramme": false,
+  "aiSystems": [
+    {
+      "id": "cv-screener",
+      "name": "CV screening and candidate ranking",
+      "description": "Ranks job applicants for client employers based on CVs and questionnaire answers.",
+      "role": "provider",
+      "euNexus": true,
+      "annexIIIAreas": ["employment"],
+      "performsProfiling": true,
+      "claimsArticle6_3Exemption": true,
+      "makesOrAssistsDecisionsAboutPersons": true,
+      "controls": {
+        "riskManagementSystem": true,
+        "dataGovernance": false,
+        "technicalDocumentation": false,
+        "automaticLogging": true,
+        "instructionsForUse": true,
+        "humanOversightDesign": true,
+        "qualityManagementSystem": false
+      }
+    },
+    {
+      "id": "support-chatbot",
+      "name": "Customer support chatbot",
+      "role": "provider_and_deployer",
+      "euNexus": true,
+      "interactsDirectlyWithPersons": true,
+      "controls": {
+        "aiInteractionDisclosure": true
+      }
+    }
+  ],
+  "gdpr": {
+    "processesPersonalData": true,
+    "role": "controller_and_processor",
+    "dataSubjectsInEu": true,
+    "processing": {
+      "extensiveProfiling": true,
+      "largeScale": false,
+      "usesProcessors": true,
+      "usesSubProcessors": true,
+      "transfersOutsideEea": true
+    },
+    "controls": {
+      "lawfulBasisDocumented": true,
+      "privacyNoticePublished": true,
+      "dataSubjectRightsProcedure": false,
+      "privacyByDesignAndDefault": true,
+      "processorAgreements": true,
+      "recordsOfProcessing": true,
+      "securityMeasures": true,
+      "breachNotificationProcedure": true,
+      "dpiaCompleted": false,
+      "controllerContracts": true,
+      "breachNotificationToController": true
+    }
+  }
+}

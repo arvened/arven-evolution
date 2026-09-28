@@ -1,0 +1,37 @@
+{
+  "company": {
+    "name": "Example Home Goods OÜ (fictional)",
+    "country": "EE",
+    "establishedInEu": true,
+    "employees": 12
+  },
+  "aiLiteracyProgramme": true,
+  "aiSystems": [
+    {
+      "id": "recommender",
+      "name": "Product recommendations",
+      "description": "Suggests related products in the online shop.",
+      "role": "deployer",
+      "euNexus": true
+    }
+  ],
+  "gdpr": {
+    "processesPersonalData": true,
+    "role": "controller",
+    "dataSubjectsInEu": true,
+    "processing": {
+      "usesProcessors": true,
+      "transfersOutsideEea": false
+    },
+    "controls": {
+      "lawfulBasisDocumented": true,
+      "privacyNoticePublished": true,
+      "dataSubjectRightsProcedure": true,
+      "privacyByDesignAndDefault": true,
+      "processorAgreements": true,
+      "recordsOfProcessing": true,
+      "securityMeasures": true,
+      "breachNotificationProcedure": true
+    }
+  }
+}
